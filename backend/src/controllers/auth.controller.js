@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-import config from '../config/config';
+
 export const signUp = async (req, res) => {
     try {
         const { nombre, email, password, rol } = req.body;
@@ -14,19 +14,19 @@ export const signUp = async (req, res) => {
             nombre,
             email,
             password: await User.encryptPassword(password),
-            roles: [rol] // Guardar rol directamente como arreglo
+            roles: [rol], // Guardar rol directamente como arreglo
         });
 
         const savedUser = await newUser.save();
 
         // Generar token JWT
-        const token = jwt.sign({ id: savedUser._id, roles: savedUser.roles }, config.SECRET, {
-            expiresIn: 86400 // 24 horas
+        const token = jwt.sign({ id: savedUser._id, roles: savedUser.roles }, process.env.JWT_SECRET, {
+            expiresIn: 86400, // 24 horas
         });
 
         res.status(201).json({ token });
     } catch (error) {
-        console.error('Error al registrar usuario:', error); // Agregar este log
+        console.error('Error al registrar usuario:', error);
         res.status(500).json({ message: 'Error al registrar el usuario', error });
     }
 };
@@ -41,8 +41,8 @@ export const signin = async (req, res) => {
         const matchPassword = await User.comparePassword(password, userFound.password);
         if (!matchPassword) return res.status(401).json({ token: null, message: 'Contraseña incorrecta' });
 
-        const token = jwt.sign({ id: userFound._id, roles: userFound.roles }, config.SECRET, {
-            expiresIn: 86400
+        const token = jwt.sign({ id: userFound._id, roles: userFound.roles }, process.env.JWT_SECRET, {
+            expiresIn: 86400,
         });
 
         res.json({ token });

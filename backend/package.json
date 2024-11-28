@@ -2,11 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type":"module",
   "scripts": {
-    "build": "babel src --out-dir build",
+
     "dev": "nodemon src/index.js --exec babel-node",
-    "start": "node build/index.js"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +20,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "mongoose": "^8.8.1",
     "socket.io": "^4.8.1"
   }
