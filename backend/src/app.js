@@ -17,7 +17,11 @@ app.get('/', (req, res) => {
     res.send('Servidor funcionando correctamente 🚀');
 });
 
-
+app.use((req, res, next) => {
+    res.status(404).json({
+        message: 'La ruta que intentas acceder no existe.',
+    });
+});
 // Rutas
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
