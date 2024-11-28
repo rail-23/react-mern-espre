@@ -1,9 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import authRoutes from './routes/auth.routes';
-import userRoutes from './routes/user.routes';
-import licenseRoutes from './routes/licensia.routes';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+import licenseRoutes from './routes/licensia.routes.js';
 
 const app = express();
 
@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({
-    origin: 'http://localhost:5173', // Ajusta la URL de tu frontend si es necesario
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Ajusta la URL según tu entorno
 }));
 
 // Rutas
