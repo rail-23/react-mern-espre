@@ -1,10 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import authRoutes from './routes/auth.routes.js';
-
-import userRoutes from './routes/user.routes.js';
-import licenseRoutes from './routes/licensia.routes.js';
+import authRoutes from './routes/auth.routes';
+import userRoutes from './routes/user.routes';
+import licenseRoutes from './routes/licensia.routes';
 
 const app = express();
 
