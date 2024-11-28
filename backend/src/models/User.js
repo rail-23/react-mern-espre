@@ -22,4 +22,4 @@ usuarioSchema.statics.comparePassword = async function (password, receivedPasswo
     return await bcrypt.compare(password, receivedPassword);
 };
 
-export default model('User', usuarioSchema);
+export default model('User.js', usuarioSchema);
