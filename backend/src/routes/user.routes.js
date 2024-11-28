@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import * as userCtrl from '../controllers/user.controller';
-import { verifyToken } from '../middleware/authJwt';
-import { isDecano } from '../middleware/verificarRoles'; 
+import * as userCtrl from '../controllers/user.controller.js';
+import { verifyToken } from '../middleware/authJwt.js';
+import { isDecano } from '../middleware/verificarRoles.js'; 
 
 const router = Router();
 
