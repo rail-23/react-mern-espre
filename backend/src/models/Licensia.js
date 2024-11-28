@@ -14,4 +14,4 @@ const LicenseSchema = new mongoose.Schema({
   
 });
 
-export default mongoose.model('Licensia', LicenseSchema);
+export default mongoose.model('Licensia.js', LicenseSchema);
