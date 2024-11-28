@@ -13,6 +13,10 @@ app.use(morgan('dev'));
 app.use(cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Ajusta la URL según tu entorno
 }));
+app.get('/', (req, res) => {
+    res.send('Servidor funcionando correctamente 🚀');
+});
+
 
 // Rutas
 app.use('/auth', authRoutes);
