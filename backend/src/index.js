@@ -1,5 +1,6 @@
 import app from './app';
-import './database'; // Si tienes configurada tu base de datos aquí
+import './database'; //import 'dotenv/config';
+import 'dotenv/config'; 
 
 const PORT = process.env.PORT || 5000;
 
