@@ -20,9 +20,12 @@ export const signUp = async (req, res) => {
         const savedUser = await newUser.save();
 
         // Generar token JWT
-        const token = jwt.sign({ id: savedUser._id, roles: savedUser.roles }, process.env.JWT_SECRET, {
-            expiresIn: 86400, // 24 horas
-        });
+const token = jwt.sign(
+    { id: userFound._id, roles: userFound.roles }, 
+    process.env.JWT_SECRET, 
+    { expiresIn: 86400 } // 24 horas
+);
+
 
         res.status(201).json({ token });
     } catch (error) {
@@ -41,9 +44,12 @@ export const signin = async (req, res) => {
         const matchPassword = await User.comparePassword(password, userFound.password);
         if (!matchPassword) return res.status(401).json({ token: null, message: 'Contraseña incorrecta' });
 
-        const token = jwt.sign({ id: userFound._id, roles: userFound.roles }, process.env.JWT_SECRET, {
-            expiresIn: 86400,
-        });
+const token = jwt.sign(
+    { id: userFound._id, roles: userFound.roles }, 
+    process.env.JWT_SECRET, 
+    { expiresIn: 86400 } // 24 horas
+);
+
 
         res.json({ token });
     } catch (error) {
