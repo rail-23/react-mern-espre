@@ -21,7 +21,7 @@ export const signUp = async (req, res) => {
 
         // Generar token JWT
 const token = jwt.sign(
-    { id: userFound._id, roles: userFound.roles }, 
+    { id: savedUser._id, roles: savedUser.roles }, 
     process.env.JWT_SECRET, 
     { expiresIn: 86400 } // 24 horas
 );
