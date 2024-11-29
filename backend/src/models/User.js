@@ -6,13 +6,11 @@ const usuarioSchema = new Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     roles: [{ type: String, enum: ["estudiante", "decano", "vicerrector"], required: true }]
-
 }, {
     timestamps: true,
     versionKey: false
 });
 
-// Métodos de encriptación
 usuarioSchema.statics.encryptPassword = async function (password) {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
@@ -22,4 +20,5 @@ usuarioSchema.statics.comparePassword = async function (password, receivedPasswo
     return await bcrypt.compare(password, receivedPassword);
 };
 
-export default model('User.js', usuarioSchema);
+export default model('User', usuarioSchema);
+
