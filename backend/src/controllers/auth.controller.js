@@ -21,10 +21,11 @@ export const signUp = async (req, res) => {
 
         // Generar token JWT
 const token = jwt.sign(
-    { id: savedUser._id, roles: savedUser.roles }, 
+    { id: userFound._id, roles: userFound.roles }, 
     process.env.JWT_SECRET, 
     { expiresIn: 86400 } // 24 horas
 );
+
 
 
         res.status(201).json({ token });
