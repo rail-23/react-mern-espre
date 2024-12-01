@@ -11,8 +11,9 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://frontend-services-t3ve.onrender.com'], 
-    credentials: true,
+    origin: ['http://localhost:5173', 'https://react-mern-frontend-1wcw.onrender.com'], 
+    credentials: true, 
+    
 }));
 
 app.get('/', (req, res) => {
