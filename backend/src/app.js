@@ -1,9 +1,12 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import dotenv from 'dotenv'; 
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import licenseRoutes from './routes/licensia.routes.js';
+
+dotenv.config(); // Cargar el archivo .env
 
 const app = express();
 
@@ -11,24 +14,22 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://react-mern-frontend-1wcw.onrender.com'], 
-    credentials: true, 
-    
+    origin: process.env.CORS_ORIGINS.split(','),  
+    credentials: true,
 }));
 
-app.get('/', (req, res) => {
-    res.send('Servidor funcionando correctamente 🚀');
-});
+// Rutas
+app.use(process.env.AUTH_ROUTE, authRoutes);
+app.use(process.env.USER_ROUTE, userRoutes);
+app.use(process.env.LICENSE_ROUTE, licenseRoutes);
 
+// Middleware de 404
 app.use((req, res, next) => {
     res.status(404).json({
         message: 'La ruta que intentas acceder no existe.',
     });
 });
-// Rutas
-app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
-app.use('/licenses', licenseRoutes);
 
 // Exportar app
 export default app;
+
