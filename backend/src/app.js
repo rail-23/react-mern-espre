@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://react-mern-express-frontend.onrender.com'], // Permitir tanto localhost como la URL en Render
+    origin: ['http://localhost:5173', 'https://frontend-services-t3ve.onrender.com'], 
     credentials: true,
 }));
 
